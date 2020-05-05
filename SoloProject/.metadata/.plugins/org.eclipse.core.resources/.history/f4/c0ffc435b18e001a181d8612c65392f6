@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<body>
+	<h2 id="01">하위</h2>
+	<textarea id="chatLog" class="chat_log" readonly></textarea>
+    </div>
+   	<img src="" id="img"></img>
+   		
+	<script>
+		$(document).ready(function(){
+			var myElement = $("#01");
+			myElement.text("Hello jQuery!");
+		});
+
+	</script>
+<div>
+      
+</body>
+</html>

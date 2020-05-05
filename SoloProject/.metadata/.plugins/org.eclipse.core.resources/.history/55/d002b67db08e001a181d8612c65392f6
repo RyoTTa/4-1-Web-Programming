@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<title>Insert title here</title>
+</head>
+<body>
+	<h2 id="01">하위</h2>
+	<textarea id="chatLog" class="chat_log" readonly></textarea>
+    </div>
+   		<img src="" id="img"></img>
+   		
+	<script>
+		$(document).ready(function(){
+			var myElement = $("#01");
+			myElement.text("Hello jQuery!");
+		})
+		var apiURI ="http://api.openweathermap.org/data/2.5/weather?q=Busan&appid=dc8d5f394054b66bd905f0d24fc95a3d"   
+			$('#chatLog').append('테스트\n');
+			$.ajax({
+	            url : apiURI,
+	            method : 'GET',
+	            success :  (data)=> {
+	              var temp = String((data.main.temp - 272)).substring(0,3); // 온도
+	              var location = data.name; // 지역이름 
+	              
+	              $('#chatLog').append('지역 ：' + location + ' 온도　：' + tempr　+ "도입니다. "+'\n'); // 아이콘 취득 
+	              
+	              var imgURL = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png"; // 아이콘 표시
+	              $('#img').attr("src", imgURL);
+	            }
+	          }); 
+	    }   
+	</script>
+<div>
+      
+</body>
+</html>
