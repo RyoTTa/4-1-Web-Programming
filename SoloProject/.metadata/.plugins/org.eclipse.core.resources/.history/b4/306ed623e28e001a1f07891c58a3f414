@@ -1,0 +1,49 @@
+body::before { 
+	position: fixed; 
+	top: 0; 
+	left: 0; 
+	right: 0; 
+	bottom: 0; 
+	background-image: url("./background/clean.jpg"); 
+	background-size: cover;
+	-webkit-filter: blur(5px); 
+	-moz-filter: blur(5px); 
+	-o-filter: blur(5px); 
+	-ms-filter: blur(5px); 
+	filter: blur(5px); 
+	z-index: -1; 
+	content: ""; 
+}
+#current_time{
+	
+}
+#current_weather{
+	
+}
+#current_temp{
+	font_size = 200pt;
+}
+
+.forecast_layer_outter{
+	margin-top:100px;
+	display : table;
+	width : 100%;
+	height : 100%;
+}
+.forecast_layer_inner{
+	display : table-cell;
+	text-align: center;
+	vertical-align:middle;
+}
+.forecast_contents{
+	display : inline-block;
+}
+.box{
+	width : 200px;
+	height : 200px;
+	color: #fff;
+	font-size:20pt;
+	text-align:center;
+	float:left;
+	margin-right:2px;
+}

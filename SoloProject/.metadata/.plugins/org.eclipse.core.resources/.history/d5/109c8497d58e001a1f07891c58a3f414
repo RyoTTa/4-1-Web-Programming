@@ -1,0 +1,12 @@
+.background {
+    background-image: url('clean.jpg');
+    
+    filter: blur(10px) sepia(15%) brightness(80%);
+    
+    width:2000px;
+    height:2000px; 
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

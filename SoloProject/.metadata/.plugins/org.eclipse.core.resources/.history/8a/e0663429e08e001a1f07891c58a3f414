@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="background.css"></link>
+	<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<center>
+			<div><h2 id="current_time" ></h2></div>
+			<div><h1 id="current_temp"></h1></div>
+			<div><h1 id="current_weather"></h1></div>
+			<div><textarea id="chatLog" class="contents" readonly style="width:500px; height:100px"></textarea></div>
+		</center>
+	</div>
+	<div class="forecast_layer_outter">
+		<div class="forecast_layer_inner">
+			<div class="forecast_contents">
+				<div class="box">
+				1
+				</div>
+				<div class="box">
+				2
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		
+	
+	
+   	
+   		
+   	<!----script 부분---->
+	<script>
+		function parseWeather(){
+			forecast_loadJSON(function(response){
+				var jsonData = JSON.parse(response);
+				var date = new Date(jsonData["list"][0]["dt_txt"]);
+				date.setHours(date.getHours()+9)
+				for(i = 0; i<7 ;i++){	
+					$("#chatLog").append("도시 : " + jsonData.city.name + "\n"
+							+ "기온 : " + (jsonData["list"][i]["main"]["temp"] - 273.15) + "\n"
+							+ "시간 : " + date + "\n"
+							+ "날씨 : " + jsonData["list"][i]["weather"][0]["main"] + "\n\n\n");
+					date.setHours(date.getHours()+3)
+				}
+				
+			});
+			
+			weather_loadJSON(function(response){
+				var jsonData = JSON.parse(response);
+				var date = new Date();
+				$("#current_time").text(date);
+				$("#current_temp").text((jsonData["main"]["temp"] - 273.15)+"°C");
+				$("#current_weather").text(jsonData["weather"][0]["main"]);
+				$("#chatLog").append("도시 : " + jsonData.name + "\n"
+						+ "기온 : " + (jsonData["main"]["temp"] - 273.15) + "\n"
+						+ "날씨 : " + jsonData["weather"][0]["main"] + "\n\n\n");
+			});
+		}
+		function forecast_loadJSON(callback){
+			var apiURL ="http://api.openweathermap.org/data/2.5/forecast?q=Daegu,KR&cnt=7&appid=dc8d5f394054b66bd905f0d24fc95a3d " 			
+			var request = new XMLHttpRequest();
+			request.overrideMimeType("application/json");
+			request.open('GET',apiURL, true);
+			
+			request.onreadystatechange = function(){
+				if(request.readyState == 4 && request.status =="200"){
+					callback(request.responseText);
+				}
+			};
+			request.send(null);
+		}
+		
+		function weather_loadJSON(callback){
+			var apiURL ="http://api.openweathermap.org/data/2.5/weather?q=Daegu,KR&appid=dc8d5f394054b66bd905f0d24fc95a3d " 	
+			var request = new XMLHttpRequest();
+			request.overrideMimeType("application/json");
+			request.open('GET',apiURL, true);
+			
+			request.onreadystatechange = function(){
+				if(request.readyState == 4 && request.status =="200"){
+					callback(request.responseText);
+				}
+			};
+			request.send(null);
+		}
+		window.onload = function(){
+			parseWeather();
+		}
+			
+	</script>
+      
+</body>
+</html>
