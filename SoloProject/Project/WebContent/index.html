@@ -7,10 +7,13 @@
 </head>
 <body>
 	<h2 id="01">하위</h2>
-	<textarea id="chatLog" class="chat_log" readonly></textarea>
+	<textarea id="chatLog" class="chat_log" readonly style="width:500px; height:100px"></textarea>
     </div>
    	<img src="" id="img"></img>
    		
+   		
+   		
+   	<!----script 부분---->
 	<script>
 		$(document).ready(function(){
 			var myElement = $("#01");
@@ -20,7 +23,13 @@
 		function parseWeather(){
 			loadJSON(function(response){
 				var jsonData = JSON.parse(response);
-				$("#chatLog").text(response);
+				for(i = 0; i<7 ;i++){
+					$("#chatLog").append("도시 : " + jsonData.city.name + "\n"
+							+ "기온 : " + (jsonData["list"][i]["main"]["temp"] - 273.15) + "\n"
+							+ "시간 : " + jsonData["list"][i]["dt_txt"] + "\n"
+							+ "날씨 : " + jsonData["list"][i]["weather"][0]["main"] + "\n\n\n");
+				}
+				
 			});
 		}
 		function loadJSON(callback){
