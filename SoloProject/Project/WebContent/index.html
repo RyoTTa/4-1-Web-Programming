@@ -10,7 +10,7 @@
 	<div>
 		<center>
 			<div><h2 id="current_time" ></h2></div>
-			<div><h1 id="current_weather"></h1></div>
+			<div><img id="current_weather_icon_image" class= "main_icon_image"></div>
 			<div id="current_temp"></div>
 		</center>
 	</div>
@@ -66,7 +66,7 @@
 				var date = new Date(jsonData["list"][0]["dt_txt"]);
 				date.setHours(date.getHours()+9)
 				for(i = 0; i<7 ;i++){	
-					var imgURL = "http://openweathermap.org/img/w/" + jsonData["list"][i]["weather"][0]["icon"] + ".png"
+					var imgURL = ".\\weather_icon\\" + jsonData["list"][i]["weather"][0]["icon"] + ".png";
 					$("#box"+i+"_weather").text(jsonData["list"][i]["weather"][0]["main"]);
 					$("#box"+i+"_weather_icon_image").attr("src", imgURL);
 					$("#box"+i+"_temp").text(Math.floor((jsonData["list"][i]["main"]["temp"] - 273.15))+"°C");
@@ -79,9 +79,11 @@
 			weather_loadJSON(function(response){
 				var jsonData = JSON.parse(response);
 				var date = new Date();
+				var imgURL = ".\\weather_icon\\" + jsonData["weather"][0]["icon"] + ".png";
 				$("#current_time").text(date.getMonth()+"월 "+date.getDate()+"일 "+date.getHours()+"시");
 				$("#current_temp").text((jsonData["main"]["temp"] - 273.15)+"°C");
 				$("#current_weather").text(jsonData["weather"][0]["main"]);
+				$("#current_weather_icon_image").attr("src", imgURL);
 			});
 		}
 		

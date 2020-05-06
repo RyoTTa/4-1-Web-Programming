@@ -17,16 +17,13 @@ body::before {
 #current_time{
 	color :white;
 }
-#current_weather{
-	color :white;
-}
 #current_temp{
 	color :white;
-	font-size: 200pt;
+	font-size: 150pt;
 }
 
 .forecast_layer_outter{
-	margin-top:100px;
+	margin-top:10px;
 	display : table;
 	width : 100%;
 	height : 100%;
@@ -51,4 +48,8 @@ body::before {
 .box_icon_image{
 	width: 100px;
 	height: 100px;	
+}
+.main_icon_image{
+	width: 200px;
+	height: 200px;	
 }
