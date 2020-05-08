@@ -29,7 +29,7 @@ function parseWeather(){
 
 
 function forecast_loadJSON(callback){
-    var apiURL ="http://api.openweathermap.org/data/2.5/forecast?q="+locate+",KR&cnt=7&appid=dc8d5f394054b66bd905f0d24fc95a3d " ;		
+    var apiURL ="https://api.openweathermap.org/data/2.5/forecast?q="+locate+",KR&cnt=7&appid=dc8d5f394054b66bd905f0d24fc95a3d " ;		
     var request = new XMLHttpRequest();
     request.overrideMimeType("application/json");
     request.open('GET',apiURL, true);
@@ -44,7 +44,7 @@ function forecast_loadJSON(callback){
 
 
 function weather_loadJSON(callback){
-    var apiURL ="http://api.openweathermap.org/data/2.5/weather?q="+locate+",KR&appid=dc8d5f394054b66bd905f0d24fc95a3d " ;
+    var apiURL ="https://api.openweathermap.org/data/2.5/weather?q="+locate+",KR&appid=dc8d5f394054b66bd905f0d24fc95a3d " ;
     var request = new XMLHttpRequest();
     request.overrideMimeType("application/json");
     request.open('GET',apiURL, true);
