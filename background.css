@@ -3,20 +3,32 @@ body {
 	background-color: black;
 	background-repeat: no-repeat; 
 	background-size: cover;
+	font-family: Sans-Serif;
 }
 #current_time{
 	color :white;
+}
+div{
+	
+}
+.weather{
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	top:35%;
+	left: 50%;
+	margin:-250px 0 0 -250px;
 }
 #current_temp{
 	color :white;
 	font-size: 150pt;
 }
-
 .forecast_layer_outter{
-	margin-top:10px;
+	position: absolute;
+	top:65%;
 	display : table;
 	width : 100%;
-	height : 100%;
+	height : 200px;
 }
 .forecast_layer_inner{
 	display : table-cell;
@@ -35,6 +47,7 @@ body {
 	float:left;
 	margin-right:2px;
 }
+
 .box_icon_image{
 	width: 100px;
 	height: 100px;	
