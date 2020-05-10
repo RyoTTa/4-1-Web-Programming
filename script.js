@@ -26,7 +26,7 @@ function parseWeather(){
         $("#current_temp").text(Math.floor((jsonData_weather["main"]["temp"] - 273.15))+"°C");
         $("#current_weather").text(jsonData_weather["weather"][0]["main"]);
         $("#current_weather_icon_image").attr("src", imgURL);
-        $("body").css({"background-image": "url(./background/"+image+".jpg", 'background-repeat': 'no-repeat','background-size': 'cover'});
+        $("body").css({"background-image": "url(./background/"+image+".jpg", 'background-repeat': 'no-repeat','background-size': 'cover',"transition":"background-image 0.1s"});
     });
 }
 
@@ -74,25 +74,23 @@ $(document).ready(function(){
     $('.box').hover(function(){
         var temp_name = $(this).attr("id");
         temp_name = temp_name.substring(3,4);
-        $(this).css({"height":"300px"});
-        $(this).css({"background-color":"rgba(255,255,255,0.5)", "border-radius":"10%"});
-        $(this).append($("<div id=fore_temp1>체감온도 : "+ Math.floor(jsonData_forecast["list"][temp_name]["main"]["feels_like"]-273.15)+"°C"+ "</div>"));
-        $(this).append($("<div id=fore_temp2>기압 : "+ jsonData_forecast["list"][temp_name]["main"]["pressure"]+"hPa" + "</div>"));
-        $(this).append($("<div id=fore_temp3>풍속 : "+ jsonData_forecast["list"][temp_name]["wind"]["speed"]+"m/s" + "</div>"));
+        $(this).css({"height":"300px","transition":"height 1s"});
+        $(this).css({"background-color":"rgba(0,0,0,0.4)", "border-radius":"10%"});
+        $(this).append($("<div class=fore_temp>체감온도 : "+ Math.floor(jsonData_forecast["list"][temp_name]["main"]["feels_like"]-273.15)+"°C"+ "</div>"));
+        $(this).append($("<div class=fore_temp>기압 : "+ jsonData_forecast["list"][temp_name]["main"]["pressure"]+"hPa" + "</div>"));
+        $(this).append($("<div class=fore_temp>풍속 : "+ jsonData_forecast["list"][temp_name]["wind"]["speed"]+"m/s" + "</div>"));
+        
     
     }, function(){
-        $(this).css({"background-color":"transparent"});
-        $(this).css({"height":"200px"});
-        $("div").remove("#fore_temp1");
-        $("div").remove("#fore_temp2");
-        $("div").remove("#fore_temp3");
+        $(this).css({"height":"200px","background-color":"transparent","transition":"background-color 1s, height 1s"});
+        $("div").remove(".fore_temp");
     });
 
     $('.weather').hover(function(){
-        $(this).css({"background-color":"rgba(255,255,255,0.5)", "border-radius":"10%"});
+        $(this).css({"background-color":"rgba(0,0,0,0.4)", "border-radius":"10%"});
         $("#current_weather_icon_image").hide();
         $("#current_temp").hide();
-        $("#current_time").append($("<div id=weat_temp1></br></br></br>체감온도 :"+Math.floor(jsonData_weather["main"]["feels_like"] - 273.15)+ "</p>" + 
+        $("#current_time").append($("<div class=weat_temp></br></br></br>체감온도 :"+Math.floor(jsonData_weather["main"]["feels_like"] - 273.15)+"°C"+ "</p>" + 
             "기압 : " + jsonData_weather["main"]["pressure"]+"hPa</p>"+ 
             "풍속 : " + jsonData_weather["wind"]["speed"]+"m/s</p>"+
             "습도 : " + jsonData_weather["main"]["humidity"] +"%</p>"+
@@ -104,6 +102,6 @@ $(document).ready(function(){
         $(this).css({"height":"500px"});
         $("#current_weather_icon_image").show();
         $("#current_temp").show();
-        $("div").remove("#weat_temp1");
+        $("div").remove(".weat_temp");
     });
 });
