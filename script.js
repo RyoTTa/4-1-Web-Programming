@@ -22,11 +22,38 @@ function parseWeather(){
         var date = new Date();
         var imgURL = "./weather_icon/" + jsonData_weather["weather"][0]["icon"] + ".png";
         var image = jsonData_weather["weather"][0]["icon"];
+        var temp = Math.floor((jsonData_weather["main"]["temp"] - 273.15));
         $("#current_time").text(date.getMonth()+"월 "+date.getDate()+"일 "+date.getHours()+"시");
-        $("#current_temp").text(Math.floor((jsonData_weather["main"]["temp"] - 273.15))+"°C");
+        $("#current_temp").text(temp+"°C");
         $("#current_weather").text(jsonData_weather["weather"][0]["main"]);
         $("#current_weather_icon_image").attr("src", imgURL);
         $("body").css({"background-image": "url(./background/"+image+".jpg", 'background-repeat': 'no-repeat','background-size': 'cover',"transition":"background-image 0.1s"});
+        
+        if(temp<=4){
+            clothes = "4.png";
+            clothes_text = "패딩, 두꺼운 코트, </br> 누빔옷, 목도리";
+        }else if(temp>=5 && temp<=8){
+            clothes = "5.png";
+            clothes_text = "울 코트, 히트텍, </br> 가죽옷, 기모";
+        }else if(temp>=9 && temp<=11){
+            clothes = "9.png";
+            clothes_text = "트렌치 코트, 야상, </br> 점퍼, 기모바지";
+        }else if(temp>=12 && temp<=16){
+            clothes = "12.png";
+            clothes_text = "자켓, 청자켓, </br> 니트, 청바지";
+        }else if(temp>=17 && temp<=19){
+            clothes = "17.png";
+            clothes_text = "가디건, 얇은 니트, </br> 맨투맨, 후드";
+        }else if(temp>=20 && temp<=22){
+            clothes = "20.png";
+            clothes_text = "블라우스, 긴팔 티셔츠, </br> 면바지, 슬랙스";
+        }else if(temp>=23 && temp<=27){
+            clothes = "23.png";
+            clothes_text = "얇은 셔츠, 반팔 티셔츠, </br> 반바지, 슬랙스";
+        }else{
+            clothes = "28.png";
+            clothes_text = "민소매, 반팔 티셔츠, </br> 반바지, 린넨옷";
+        }
     });
 }
 
@@ -88,19 +115,24 @@ $(document).ready(function(){
 
     $('.weather').hover(function(){
         $(this).css({"background-color":"rgba(0,0,0,0.4)", "border-radius":"10%"});
-        $("#current_weather_icon_image").hide();
+        $("#current_weather_icon_image_div").hide();
         $("#current_temp").hide();
-        $("#current_time").append($("<div class=weat_temp></br></br></br>체감온도 :"+Math.floor(jsonData_weather["main"]["feels_like"] - 273.15)+"°C"+ "</p>" + 
-            "기압 : " + jsonData_weather["main"]["pressure"]+"hPa</p>"+ 
-            "풍속 : " + jsonData_weather["wind"]["speed"]+"m/s</p>"+
-            "습도 : " + jsonData_weather["main"]["humidity"] +"%</p>"+
+        $("#current_time").append($("<div class=weat_temp>체감온도 :"+Math.floor(jsonData_weather["main"]["feels_like"] - 273.15)+"°C"+ "</br>" + 
+            "기압 : " + jsonData_weather["main"]["pressure"]+"hPa</br>"+ 
+            "풍속 : " + jsonData_weather["wind"]["speed"]+"m/s</br>"+
+            "습도 : " + jsonData_weather["main"]["humidity"] +"%</br></p>"+
             "</div>"));
+        $("#current_time").append($("<div class=weat_temp>" + "<img id=clothes src=" + 
+        "./clothes/" + clothes + ">" + 
+        "</div>"));
+
+        $("#current_time").append($("<div class=weat_temp></br>"+clothes_text+"</div>"));
         
     
     }, function(){
         $(this).css({"background-color":"transparent"});
         $(this).css({"height":"500px"});
-        $("#current_weather_icon_image").show();
+        $("#current_weather_icon_image_div").show();
         $("#current_temp").show();
         $("div").remove(".weat_temp");
     });

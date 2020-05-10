@@ -3,6 +3,7 @@ body {
 	background-repeat: no-repeat; 
 	background-size: cover;
 	font-family: Sans-Serif;
+	transition: background-image 0.1s;
 }
 .weather{
 	position: absolute;
@@ -55,6 +56,11 @@ body {
 	height: 100px;	
 }
 
+#clothes{
+	width: 150px;
+	height: 150px;	
+}
+
 select.city{
 	width: 100px;
 	font-size: 20pt;
@@ -74,14 +80,10 @@ select.city option{
 }
 .weat_temp{
 	font-size: 19pt;
+	font-weight: normal;
 }
 .fore_temp{
 	font-size: 15pt;
-	transition: opacity 1s;
-}
-.fore_temp{
-	font-size: 15pt;
-	transition: opacity 1s;
 }
 
 @keyframes fadein {
