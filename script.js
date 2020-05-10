@@ -23,7 +23,7 @@ function parseWeather(){
         var imgURL = "./weather_icon/" + jsonData_weather["weather"][0]["icon"] + ".png";
         var image = jsonData_weather["weather"][0]["icon"];
         var temp = Math.floor((jsonData_weather["main"]["temp"] - 273.15));
-        $("#current_time").text(date.getMonth()+"월 "+date.getDate()+"일 "+date.getHours()+"시");
+        $("#current_time").text(date.getMonth()+1+"월 "+date.getDate()+"일 "+date.getHours()+"시");
         $("#current_temp").text(temp+"°C");
         $("#current_weather").text(jsonData_weather["weather"][0]["main"]);
         $("#current_weather_icon_image").attr("src", imgURL);
